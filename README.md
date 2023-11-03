@@ -1,5 +1,7 @@
 # Cypress_PR
 
+- requires Node.js
+
 ### Install all dependencies
 ```npm-install```
 
