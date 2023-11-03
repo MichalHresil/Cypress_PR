@@ -40,14 +40,7 @@ describe('Shopping cart', () => {
         cy.get('#billing_postcode').type("00259");
         cy.get('#billing_phone').type("3969896");
         cy.get('#billing_email').type("doejohn@mail.com");
-        cy.iframe(`iframe[title="Secure card number input frame"]`).find("input.InputElement").type("4242424242424242");
-        cy.iframe('iframe[title="Secure expiration date input frame"]').find("input.InputElement").then((yearInput) => {
-            var currentDate = new Date();
-            var nextMonth = (currentDate.getMonth() + 1) % 12;
-            var fullYear = nextMonth === 0 ? currentDate.getFullYear() + 1 : currentDate.getFullYear();
-            cy.wrap(yearInput).type(`${String(nextMonth + 1).padStart(2, '0')}/${String(fullYear).slice(-2)}`);
-        });
-        cy.iframe('iframe[title="Secure CVC input frame"]').find("input.InputElement").type("123");
+        cy.fillCardInfo("4242424242424242", "123");
         cy.get('#place_order').click();
         cy.get('.elementor-heading-title').should("be.visible").and("have.text", "Checkout");
         cy.get('.woocommerce-notice').should("be.visible").and("have.text", "Thank you. Your order has been received.");

@@ -22,7 +22,7 @@ describe('Product details and ordering', () => {
         cy.get(".related").should("be.visible");
     });
 
-    it.only('Test adding products to the cart and validate correct products and quantities.', () => {
+    it('Test adding products to the cart and validate correct products and quantities.', () => {
         cy.visit("/product/anchor-bracelet/");
         cy.get(".quantity > input").should("be.visible").and('have.value', '1');
         cy.get('.single_add_to_cart_button').click();
